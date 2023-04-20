@@ -1,0 +1,26 @@
+{{- range $values := .Values.horizontalPodAutoscaler.scallings }}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ $values.name }}
+  namespace: {{ $values.namespace }}
+  labels:
+  {{- range $labels := $values.labels }}
+    {{$labels | toYaml}} 
+  {{- end }}
+  annotations: null
+spec:
+  scaleTargetRef:
+    apiVersion: {{ $values.scaleTargetRef.apiVersion }}
+    kind: {{ $values.scaleTargetRef.kind }}
+    name: {{ $values.scaleTargetRef.name }}
+  minReplicas: {{ $values.minReplicas }}
+  maxReplicas: {{ $values.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: {{ $values.resource.type }}
+        target: 
+          type: {{ $values.resource.target.type }}
+          averageValue: {{ $values.resource.target.averageValue }}
+{{- end }}

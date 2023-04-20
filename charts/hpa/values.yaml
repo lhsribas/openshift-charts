@@ -1,0 +1,20 @@
+horizontalPodAutoscaler:
+  scallings:
+    - name: hpa-app
+      namespace: app-hpa
+      minReplicas: 1
+      maxReplicas: 5
+      scaleTargetRef:
+        apiVersion: apps/v1
+        kind: Deployment
+        name: deployment-name
+      resource:
+        type: memory
+        target: 
+          averageValue: 500Mi 
+          type: AverageValue
+      labels: 
+        - app.kubernetes.io/instance: ff-app-dev
+        - app.kubernetes.io/managed-by: Helm
+        - app.kubernetes.io/domain: facility-finder
+      annotations: {}

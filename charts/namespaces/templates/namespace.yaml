@@ -1,0 +1,18 @@
+{{- range $key, $value := $.Values.cluster.namespaces }}
+---
+apiVersion: v1
+description: "{{ $value.description }}"
+displayName: {{ $value.displayName }}
+kind: ProjectRequest
+metadata:
+    name: {{ $value.name }}
+{{- end }}
+
+
+InstanceType: m6g.xlarge 
+vcpu: 4
+cores: 4
+price: 0.172
+
+
+https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/EU (Ireland)/Linux/index.json?timestamp=1681838688444

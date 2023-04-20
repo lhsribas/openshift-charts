@@ -1,0 +1,8 @@
+cluster:
+  namespaces:
+    - name: ff-app-ui
+      description: namespace for ff ui applications
+      displayName: ff-app-ui
+    - name: ff-app-api
+      description: namespace for ff api applications
+      displayName:  ff-app-api
